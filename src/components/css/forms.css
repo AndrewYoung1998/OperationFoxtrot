@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 7px 0 #BFB7AD;
+    position: fixed;
+    /* center the element */
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    /* give it dimensions */
+    min-height: 10em;
+    width: 500px;
+    font-family: 'Roboto',-apple-system, sans-serif;
+    background: #fff;
+}
+form h1{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+}
+form input:focus{
+    outline: none;
+}
+form .form-header{
+    background: #DE8F19;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    font-family: 'Roboto', -apple-system, sans-serif;
+}
+form .form-body{
+    padding: 1rem 0;
+}
+form .form-body input{
+    width:335px;
+    height: 35px;
+    border-radius: 10px;
+    margin: 2rem 0 0 0;
+    border: solid .25px #000;
+}
+form .form-body button{
+    background: #ffffff;
+    color: #DE8F19;
+    border-radius: 10px;
+    height: 35px;
+    border: solid .25px #000;
+    margin: 2rem 0;
+    font-size:18px;
+    padding: 7px 20px;
+    transition: ease-in-out .25s;
+    float: right;
+}
+form .form-body button:hover{
+    color: #fff;
+    background: #DE8F19;
+    border:none;
+    box-shadow: 0 0 5px 0 #BFB7AD;
+}
+form .form-body button:focus{
+    outline: none;
+}
