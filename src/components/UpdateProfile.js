@@ -49,6 +49,7 @@ export default function UpdateProfile(){
                 </div>
                 <p>{error}</p>
                 <div className="form-body">
+
                     <input type="email" ref={emailRef} placeholder="Email" defaultValue={currentUser.email}/>
                     <br/>
                     <input type="password" ref={passwordRef} placeholder="leave blank to keep the same"/>

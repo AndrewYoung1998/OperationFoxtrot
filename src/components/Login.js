@@ -28,6 +28,11 @@ export default function Login(){
 
     return(
         <div>
+            <header>
+                <div className="button sign-up">
+                   <Link to='/signup'>Sign Up</Link>
+                </div>
+            </header>
             <form onSubmit={handleSubmit}>
                 <div className="form-header">
                     <h1>Login</h1>
@@ -39,12 +44,9 @@ export default function Login(){
                     <input type="password" ref={passwordRef} placeholder="Password"/>
                     <br/>
                     <button type="submit" disabled={loading}>Login</button>
-                    <div className="sign-up">
+                    <div className="forgot-password">
                         <Link to='/forgot-password'>Forgot Password</Link>
                     </div>
-                </div>
-                <div className="sign-up">
-                    Need an account? <Link to='/signup'>Sign Up</Link>
                 </div>
             </form>
         </div>

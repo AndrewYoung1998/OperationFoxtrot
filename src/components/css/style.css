@@ -2,3 +2,75 @@ body{
     margin: 0;
     background: #FBF1E3;
 }
+header{
+    background: #DE8F19;
+    color: #fff;
+    width: 100%;
+    text-align: end;
+    font-family: 'Roboto', -apple-system, sans-serif;
+    padding: 2rem 0rem;
+    display: flex;
+    justify-content: center;
+}
+header .sign-up{
+    padding: 0 2rem;
+}
+header .button{
+    align-self: center;
+    position: absolute;
+    right: 1rem;
+}
+header .button a{
+    color: #ffffff;
+    border-radius: 10px;
+    height: 35px;
+    border: solid 1px #fff;
+    margin: 2rem 0;
+    font-size:18px;
+    padding: 7px 20px;
+    transition: ease-in-out .25s;
+    text-decoration: none;
+}
+header .button a:hover{
+    color: #DE8F19;
+    background: #ffffff;
+    border:none;
+    box-shadow: 0 0 5px 0 #BFB7AD;
+}
+.information{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 7px 0 #BFB7AD;
+    margin-right: auto;
+    margin-left: auto;
+    /* give it dimensions */
+    padding: 3rem;
+    width: 500px;
+    font-family: 'Roboto',-apple-system, sans-serif;
+    background: #fff;
+    font-size: 20px;
+    margin-top:5rem;
+}
+.information .military-rank{
+    text-transform: uppercase;
+}
+.information .info-footer{
+    padding: 2rem 0 0 0;
+}
+.information .info-footer button{
+    float: right;
+    background: #ffffff;
+    color: #DE8F19;
+    border-radius: 10px;
+    height: 35px;
+    border: solid .25px #000;
+    font-size: 18px;
+    padding: 7px 20px;
+    transition: ease-in-out .25s;
+}
+.information .info-footer button:hover {
+    color: #fff;
+    background: #DE8F19;
+    border: none;
+    box-shadow: 0 0 5px 0 #bfb7ad;
+}

@@ -10,7 +10,7 @@ export function AuthProvider({ children }){
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
 
-    //Signs user up using firbase auth
+    //Signs user up using firebase auth
     function signup(email, password){
         return auth.createUserWithEmailAndPassword(email, password)
     }

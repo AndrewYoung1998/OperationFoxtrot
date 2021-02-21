@@ -7,6 +7,7 @@ import ForgotPassword from "./ForgotPassword";
 import {AuthProvider} from "../contexts/AuthContext";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
+import Profile from "./Profile";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
                 <Switch>
                     {/*Private route is to check a user is signed in*/}
                     <PrivateRoute exact path="/" component={Dashboard}/>
-                    <PrivateRoute  path="/update-profile" component={UpdateProfile}/>
+                    <PrivateRoute path="/profile" component={Profile}/>
+                    <PrivateRoute path="/update-profile" component={UpdateProfile}/>
 
                     {/*Routes to pages without having to be signed in*/}
                     <Route path="/signup" component={SignUp}/>
