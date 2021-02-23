@@ -33,7 +33,7 @@ export default function Login(){
                    <Link to='/signup'>Sign Up</Link>
                 </div>
             </header>
-            <form onSubmit={handleSubmit}>
+            <form className="form" onSubmit={handleSubmit}>
                 <div className="form-header">
                     <h1>Login</h1>
                 </div>

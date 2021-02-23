@@ -14,12 +14,10 @@ export function AuthProvider({ children }){
     function signup(email, password){
         return auth.createUserWithEmailAndPassword(email, password)
     }
-
     //Logs in user using firebase auth
     function login (email,password){
         return auth.signInWithEmailAndPassword(email,password)
     }
-
     //Logs out user using firebase auth
     function logout(){
         return auth.signOut();

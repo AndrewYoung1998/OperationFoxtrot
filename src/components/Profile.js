@@ -7,6 +7,7 @@ import {db} from '../firebase'
 export default function Profile() {
     const [error, setError] = useState();
     const [veterans, setVeterans] = useState();
+    const [optIn,  setOptIn] = useState()
     const {currentUser, logout} = useAuth();
     const history = useHistory();
 
@@ -20,11 +21,19 @@ export default function Profile() {
         }
     }
 
+    //Gets current user document data
     useEffect(() => {
         db.collection("veterans").doc(currentUser.uid).get().then(doc =>{
             setVeterans(doc.data())
         });
-    },[currentUser.uid]);
+        //Checks to see if a user opted in
+        if(veterans?.opt_in !== false){
+            setOptIn("Yes")
+        }else{
+            setOptIn("No")
+        }
+    },[currentUser.uid, veterans?.opt_in]);
+
 
     return (
         <div className="profile">
@@ -43,10 +52,19 @@ export default function Profile() {
                 Email: {currentUser.email}
                 <br/>
                 <br/>
-                Military Rank:{veterans?.military_rank}
+                Military Rank: {veterans?.military_rank}
+                <br/>
+                <br/>
+                Zipcode: {veterans?.zip_code}
+                <br/>
+                <br/>
+                Data Sharing:{optIn}
                 <br/>
                 <div className="info-footer">
                     <Link to="/update-profile" className="button">Update Profile</Link>
+                    <br/>
+                    <br/>
+                    <Link to="/concerns" className="button">Update Concerns</Link>
                     <button onClick={handleLogout}>Log Out</button>
                 </div>
             </div>

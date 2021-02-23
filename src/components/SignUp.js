@@ -13,9 +13,13 @@ export default function SignUp(){
     const zipCodeRef = useRef();
     const passwordRef = useRef();
     const confirmPasswordRef = useRef();
+    const checkedRef = useRef()
+
     const { signup } = useAuth();
+
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+
     const history = useHistory();
 
     async function handleSubmit(e) {
@@ -33,10 +37,10 @@ export default function SignUp(){
                 .then(cred =>{
                     return db.collection('veterans').doc(cred.user.uid).set({
                         name:nameRef.current.value,
-                        //email:emailRef.current.value,
                         year_enlisted:yearsEnlistedRef.current.value,
                         military_rank:rankRef.current.value,
-                        zip_code:zipCodeRef.current.value
+                        zip_code:zipCodeRef.current.value,
+                        opt_in:checkedRef.current.checked
                 })
             }).then(() =>{
                 history.push('/');
@@ -50,7 +54,13 @@ export default function SignUp(){
 
     return(
         <div>
-            <form onSubmit={handleSubmit}>
+            <header>
+                <h1>Sign Up</h1>
+                <div className="button therapist-button">
+                    <Link to='/login'>Login</Link>
+                </div>
+            </header>
+            <form className={"form"} onSubmit={handleSubmit}>
                 <div className="form-header">
                     <h1>Veteran Information</h1>
                 </div>
@@ -69,12 +79,13 @@ export default function SignUp(){
                     <br/>
                     <input type="password" ref={confirmPasswordRef} placeholder="Password"/>
                     <br/>
+                    <label>Share Data?</label>
+                    <input type="checkbox" ref={checkedRef}/>
+                    <br/>
                     <button type="submit" disabled={loading}>Create Account</button>
-                    <div className="login">
-                        Have an account? <Link to='/login'>Login</Link>
-                    </div>
                 </div>
             </form>
+
         </div>
     );
 }
