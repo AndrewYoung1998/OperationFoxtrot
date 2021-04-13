@@ -111,7 +111,7 @@ export default function UpdateProfile(){
                     <br/>
                     <button type="submit" disabled={loading}>Update</button>
                     <div className="cancel">
-                       <Link to='/'>Cancel</Link>
+                       <Link to='/Profile'>Cancel</Link>
                     </div>
                 </div>
             </form>

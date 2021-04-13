@@ -1,8 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import 'firebase/firestore';
-//const admin = require('firebase-admin');
-//admin.initializeApp();
 
 
 const app = firebase.initializeApp({

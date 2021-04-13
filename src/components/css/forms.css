@@ -35,14 +35,22 @@
     height: 35px;
     border-radius: 10px;
     margin: 2rem 0 0 0;
-    border: solid .25px #000;
+    border: none;
+    box-shadow: 0px 0px 4px 0px darkgrey;
+}
+.form .form-body input[type="checkbox"]{
+    box-shadow: none;
+    width: 5%;
+    margin: 0rem 0 0 2rem;
+    display: inline-block;
 }
 .form .form-body button{
     background: #ffffff;
     color: #DE8F19;
     border-radius: 10px;
     height: 35px;
-    border: solid .25px #000;
+    border: none;
+    box-shadow: 0px 0px 4px 0px darkgrey;
     margin: 2rem 0;
     font-size:18px;
     padding: 7px 20px;

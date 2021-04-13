@@ -9,6 +9,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import Profile from "./Profile";
 import Concerns from "./Conerns";
+import UpdateConcerns from "./UpdateConcerns";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
                     <PrivateRoute path="/profile" component={Profile}/>
                     <PrivateRoute path="/update-profile" component={UpdateProfile}/>
                     <PrivateRoute path="/concerns" component={Concerns}/>
+                    <PrivateRoute path="/update-concerns" component={UpdateConcerns}/>
 
                     {/*Routes to pages without having to be signed in*/}
                     <Route path="/signup" component={SignUp}/>

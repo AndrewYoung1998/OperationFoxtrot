@@ -3,7 +3,8 @@ import './css/forms.css';
 import {useAuth} from "../contexts/AuthContext";
 import {Link, useHistory} from "react-router-dom";
 import 'firebase/firestore';
-import {db} from '../firebase'
+import {db} from '../firebase';
+
 
 export default function SignUp(){
     const nameRef = useRef();
@@ -40,10 +41,33 @@ export default function SignUp(){
                         year_enlisted:yearsEnlistedRef.current.value,
                         military_rank:rankRef.current.value,
                         zip_code:zipCodeRef.current.value,
-                        opt_in:checkedRef.current.checked
+                        opt_in:checkedRef.current.checked,
+                        concerns:{
+                            addiction:false,
+                            alcohol:false,
+                            anger_management:false,
+                            anti_social:false,
+                            anxiety:false,
+                            career_counseling:false,
+                            chronic_pain:false,
+                            coping_skills:false,
+                            depression:false,
+                            domestic_abuse:false,
+                            domestic_violence:false,
+                            drug_abuse:false,
+                            emotional_disturbance:false,
+                            gambling:false,
+                            life_transition:false,
+                            self_esteem:false,
+                            stress:false,
+                            suicidal:false,
+                            trauma_ptsd:false,
+                            brain_injury:false
+                        }
                 })
             }).then(() =>{
-                history.push('/');
+
+                history.push('/concerns');
             });
         } catch {
             setError('Failed to create account')
@@ -82,7 +106,7 @@ export default function SignUp(){
                     <label>Share Data?</label>
                     <input type="checkbox" ref={checkedRef}/>
                     <br/>
-                    <button type="submit" disabled={loading}>Create Account</button>
+                    <button type="submit" disabled={loading}>Next</button>
                 </div>
             </form>
 

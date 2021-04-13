@@ -22,12 +22,10 @@ export function AuthProvider({ children }){
     function logout(){
         return auth.signOut();
     }
-
     //Resets users password
     function resetPassword(email) {
         return auth.sendPasswordResetEmail(email)
     }
-
     //Allows user to update email
     function updateEmail(email){
         return auth.currentUser.updateEmail(email)
