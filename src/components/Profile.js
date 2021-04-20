@@ -26,7 +26,7 @@ export default function Profile() {
         db.collection("veterans").doc(currentUser.uid).get().then(doc =>{
             setVeterans(doc.data())
         });
-    }, [currentUser.uid]);
+    });
     return (
         <div className="profile">
             <header>

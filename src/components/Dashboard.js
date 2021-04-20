@@ -1,17 +1,23 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState,} from 'react';
 import {Link} from "react-router-dom";
-
-
+import firebase from "../firebase";
 
 export default function Dashboard(){
-    const [therapist, setTherapist] = useState()
+
+    const [therapist, setTherapist] = useState();
+    const [zipCode, setZipCode] = useState();
+    let userID = firebase.auth().currentUser.uid
+    firebase.firestore().collection('veterans').doc(userID).get()
+        .then((doc)=>{
+            setZipCode(doc.data().zip_code)
+    })
     useEffect(() => {
-        fetch('http://localhost:3001/scrape')
+        fetch('http://localhost:3001/scrape/'+zipCode)
             .then(res => res.json())
             .then(json => setTherapist(json)).catch(function (e) {
             console.warn(e);
         });
-    },[]);
+    },[zipCode]);
     return(
         <div>
             <header>
@@ -21,16 +27,30 @@ export default function Dashboard(){
                 </div>
             </header>
             <div id="data" className='container'>
-                <ul>
-                    {therapist?.map(allTherapist => {
+                <div>
+                   {therapist?.map((allTherapist) => {
                         return (
-                            <li>
-                                <img src={allTherapist.image}/>
-                                {allTherapist.title}
-                            </li>
+                            <div>
+                                <div>
+                                <img src={allTherapist.image} alt={allTherapist.title}/>
+                                </div>
+                                <br/>
+                                <div>
+                                    {allTherapist.title}
+                                </div>
+                                <br/>
+                                <div>
+                                    {allTherapist.excerpt}
+                                </div>
+                                <br/>
+                                <div>
+                                    {allTherapist.phone}
+                                </div>
+                                <br/>
+                            </div>
                         )
                     })}
-                </ul>
+                </div>
             </div>
         </div>
     )

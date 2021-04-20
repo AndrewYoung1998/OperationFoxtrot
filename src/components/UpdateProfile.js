@@ -107,7 +107,7 @@ export default function UpdateProfile(){
                     <input type="password" ref={confirmPasswordRef} placeholder="leave blank to keep the same"/>
                     <br/>
                     <label>Share Data?</label>
-                    <input type="checkbox" ref={checkedRef} defaultChecked={veterans?.opt_in}/>
+                    <input type="checkbox" ref={checkedRef} defaultChecked={`veterans`?.opt_in}/>
                     <br/>
                     <button type="submit" disabled={loading}>Update</button>
                     <div className="cancel">
