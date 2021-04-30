@@ -1,6 +1,7 @@
 import React, {useEffect, useState,} from 'react';
 import {Link} from "react-router-dom";
 import firebase from "../firebase";
+import './css/style.css'
 
 export default function Dashboard(){
 
@@ -27,26 +28,24 @@ export default function Dashboard(){
                 </div>
             </header>
             <div id="data" className='container'>
-                <div>
+                <div className={'therapist-list'}>
                    {therapist?.map((allTherapist) => {
                         return (
-                            <div>
-                                <div>
-                                <img src={allTherapist.image} alt={allTherapist.title}/>
+                            <div className={'therapist-card'}>
+                                <div className={'therapist-name'}>
+                                    <h3>{allTherapist.title}</h3>
                                 </div>
-                                <br/>
-                                <div>
-                                    {allTherapist.title}
+                                <div className={'therapist-information'}>
+                                    <div className={'therapist-image'}>
+                                        <img src={allTherapist.image} alt={allTherapist.title}/>
+                                    </div>
+                                    <div className={'therapist-excerpt'}>
+                                        {allTherapist.excerpt}
+                                    </div>
+                                    <div className={'therapist-phone'}>
+                                        <p>{allTherapist.phone}</p>
+                                    </div>
                                 </div>
-                                <br/>
-                                <div>
-                                    {allTherapist.excerpt}
-                                </div>
-                                <br/>
-                                <div>
-                                    {allTherapist.phone}
-                                </div>
-                                <br/>
                             </div>
                         )
                     })}
