@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import './css/forms.css';
 import './css/style.css'
 import {useAuth} from "../contexts/AuthContext";
-import { useHistory} from "react-router-dom";
 import 'firebase/firestore';
 import {db} from '../firebase'
 import {Link} from "react-router-dom";
@@ -12,7 +11,6 @@ export default function UpdateConcerns(){
     const [checkedVetConcerns, setCheckedVetConcerns] = useState()
 
 
-    const history = useHistory();
     const {currentUser} = useAuth();
 
 /*    function handleCheckbox(e) {
@@ -26,7 +24,7 @@ export default function UpdateConcerns(){
             setUpdatedConcerns(doc.data())
        /*     console.log(updatedConcerns.concerns)*/
         });
-    },[]);
+    });
 
     function handleConcernsSubmit(e){
         e.preventDefault();

@@ -43,7 +43,7 @@ export default function Dashboard(){
                                         {allTherapist.excerpt}
                                     </div>
                                     <div className={'therapist-phone'}>
-                                        <p>{allTherapist.phone}</p>
+                                        <a href={`tel:${allTherapist.phone}`}>{allTherapist.phone}</a>
                                     </div>
                                 </div>
                             </div>

@@ -3,6 +3,7 @@ import './css/forms.css';
 import {useAuth} from "../contexts/AuthContext";
 import {Link, useHistory} from "react-router-dom";
 import {db} from "../firebase";
+import ReactTooltip from "react-tooltip";
 
 export default function UpdateProfile(){
     const nameRef = useRef();
@@ -28,61 +29,61 @@ export default function UpdateProfile(){
         });
     },[currentUser.uid]);
 
-     function handleSubmit(e) {
-        e.preventDefault()
+     async function handleSubmit(e) {
+         e.preventDefault()
 
-        if (passwordRef.current.value !== confirmPasswordRef.current.value) {
-            return setError('Passwords do not match')
-        }
-        const promises = []
-        setLoading(true)
-        setError("")
+         if (passwordRef.current.value !== confirmPasswordRef.current.value) {
+             return setError('Passwords do not match')
+         }
+         const promises = []
+         setLoading(true)
+         setError("")
 
-        if(emailRef.current.value !== currentUser.email){
-            promises.push(updateEmail(emailRef.current.value))
-        }
-        if(passwordRef.current.value ){
-            promises.push(updatePassword(passwordRef.current.value))
-        }
+         if (emailRef.current.value !== currentUser.email) {
+             promises.push(updateEmail(emailRef.current.value))
+         }
+         if (passwordRef.current.value) {
+             promises.push(updatePassword(passwordRef.current.value))
+         }
 
-        if(nameRef.current.value !== veterans?.name){
-             db.collection("veterans").doc(currentUser.uid).set({
-                 name:nameRef.current.value
-             },{merge:true})
-        }
-        if(yearsEnlistedRef.current.value !== veterans?.year_enlisted){
-             db.collection("veterans").doc(currentUser.uid).set({
-                 year_enlisted:yearsEnlistedRef.current.value
-             },{merge:true})
-        }
-        if(militaryRankRef.current.value !== veterans?.military_rank){
-            db.collection("veterans").doc(currentUser.uid).set({
-                military_rank:militaryRankRef.current.value
-            },{merge:true})
-        }
-        if(zipCodeRef.current.value !== veterans?.zip_code){
-             db.collection("veterans").doc(currentUser.uid).set({
-                 zip_code:zipCodeRef.current.value
-             },{merge:true})
-        }
-        if(zipCodeRef.current.value !== veterans?.zip_code){
-             db.collection("veterans").doc(currentUser.uid).set({
-                 zip_code:zipCodeRef.current.value
-             },{merge:true})
-        }
-        if(checkedRef.current.checked !== veterans?.opt_in){
-             db.collection("veterans").doc(currentUser.uid).set({
-                 opt_in:checkedRef.current.checked
-             },{merge:true})
-        }
-        Promise.all(promises).then(()=>{
-            history.push('/Profile')
-        }).catch(()=>{
-            setError('Failed to update account')
-        }).finally(()=>{
-            setLoading(false)
-        })
-    }
+         if (nameRef.current.value !== veterans?.name) {
+             await db.collection("veterans").doc(currentUser.uid).set({
+                 name: nameRef.current.value
+             }, {merge: true})
+         }
+         if (yearsEnlistedRef.current.value !== veterans?.year_enlisted) {
+             await db.collection("veterans").doc(currentUser.uid).set({
+                 year_enlisted: yearsEnlistedRef.current.value
+             }, {merge: true})
+         }
+         if (militaryRankRef.current.value !== veterans?.military_rank) {
+             await db.collection("veterans").doc(currentUser.uid).set({
+                 military_rank: militaryRankRef.current.value
+             }, {merge: true})
+         }
+         if (zipCodeRef.current.value !== veterans?.zip_code) {
+             await db.collection("veterans").doc(currentUser.uid).set({
+                 zip_code: zipCodeRef.current.value
+             }, {merge: true})
+         }
+         if (zipCodeRef.current.value !== veterans?.zip_code) {
+             await db.collection("veterans").doc(currentUser.uid).set({
+                 zip_code: zipCodeRef.current.value
+             }, {merge: true})
+         }
+         if (checkedRef.current.checked !== veterans?.opt_in) {
+             await db.collection("veterans").doc(currentUser.uid).set({
+                 opt_in: checkedRef.current.checked
+             }, {merge: true})
+         }
+         Promise.all(promises).then(() => {
+             history.push('/Profile')
+         }).catch((error) => {
+             setError(error.code)
+         }).finally(() => {
+             setLoading(false)
+         })
+     }
 
     return(
         <div>
@@ -102,14 +103,23 @@ export default function UpdateProfile(){
                     <br/>
                     <input type="number" ref={zipCodeRef} placeholder="Zip Code" defaultValue={veterans?.zip_code}/>
                     <br/>
-                    <input type="password" ref={passwordRef} placeholder="leave blank to keep the same"/>
+                    <input type="password" ref={passwordRef} autoComplete={"new-password"} placeholder="leave blank to keep the same"/>
                     <br/>
-                    <input type="password" ref={confirmPasswordRef} placeholder="leave blank to keep the same"/>
+                    <input type="password" ref={confirmPasswordRef} autoComplete={"new-password"} placeholder="leave blank to keep the same"/>
                     <br/>
-                    <label>Share Data?</label>
-                    <input type="checkbox" ref={checkedRef} defaultChecked={`veterans`?.opt_in}/>
+                    <div className="share-data">
+                        <label>Share Data</label>
+                        <input type="checkbox" ref={checkedRef} defaultChecked={`veterans`?.opt_in}/>
+                        <p data-for="main" data-tip>?</p>
+                    </div>
+                    <ReactTooltip
+                        id="main"
+                        place="right"
+                        effect={"solid"}
+                        multiline={true}
+                    >"By checking this box you are opting in to sharing your data with us and other on the platform. You will be displayed on the Veterans Helping Veterans Page"</ReactTooltip>
                     <br/>
-                    <button type="submit" disabled={loading}>Update</button>
+                    <button className={"update"} type="submit" disabled={loading}>Update</button>
                     <div className="cancel">
                        <Link to='/Profile'>Cancel</Link>
                     </div>

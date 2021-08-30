@@ -26,7 +26,7 @@ export default function Profile() {
         db.collection("veterans").doc(currentUser.uid).get().then(doc =>{
             setVeterans(doc.data())
         });
-    });
+    },[currentUser.uid]);
     return (
         <div className="profile">
             <header>
@@ -37,6 +37,9 @@ export default function Profile() {
             </header>
             {error && alert({error})}
             <div className="information">
+                <div className="profile-header">
+                    <h3>About yourself</h3>
+                </div>
                 Name: {veterans?.name}
                 <br/>
                 <br/>
@@ -55,23 +58,29 @@ export default function Profile() {
                 Data Sharing:{ veterans?.opt_in ? 'Yes' : 'No' }
                 <br/>
                 <div className="info-footer">
-                    <Link to="/update-profile" className="button">Update Profile</Link>
+                    <div className={'cancel'}>
+                        <Link to="/update-profile">Update Profile</Link>
+                    </div>
                     <br/>
                     <button onClick={handleLogout}>Log Out</button>
                 </div>
             </div>
 
-            <div className="concerns">
+            <div className="information-concerns">
                 {/*displays all concerns that return true*/}
+                <div className="concerns-header">
+                    <h3>Concerns</h3>
+                </div>
                 <ul>
                     {veterans?.concerns.map(allConcern => {
-                        if(allConcern.concern === true)
+                        if(allConcern.concern === true){
                             return (
-                                <li>{allConcern.name_concern}</li>
-                            )
+                                <li key={allConcern.name_concern}>{allConcern.name_concern}</li>
+                            )}else{
+                            return ''
+                        }
                     })}
                 </ul>
-                <Link to="/update-concerns" className="button">Update Concerns</Link>
             </div>
         </div>
 

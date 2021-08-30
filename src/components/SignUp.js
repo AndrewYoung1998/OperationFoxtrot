@@ -4,6 +4,7 @@ import {useAuth} from "../contexts/AuthContext";
 import {Link, useHistory} from "react-router-dom";
 import 'firebase/firestore';
 import {db} from '../firebase';
+import ReactTooltip from "react-tooltip";
 
 
 export default function SignUp(){
@@ -17,10 +18,8 @@ export default function SignUp(){
     const checkedRef = useRef()
 
     const { signup } = useAuth();
-
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-
     const history = useHistory();
 
     async function handleSubmit(e) {
@@ -29,7 +28,24 @@ export default function SignUp(){
         if (passwordRef.current.value !== confirmPasswordRef.current.value) {
             return setError('Passwords do not match')
         }
-
+        if(nameRef.current.value === ''){
+            alert('Your Name Field is Empty')
+        }
+        if(yearsEnlistedRef.current.value === ''){
+            alert('Your Years Enlisted Field is Empty')
+        }
+        if(emailRef.current.value === ''){
+            alert('Your Email Field is Empty')
+        }
+        if(rankRef.current.value === ''){
+            alert('Your Rank Field is Empty')
+        }
+        if(zipCodeRef.current.value === ''){
+            alert('Your Zip Code Field is Empty')
+        }
+        if(passwordRef.current.value.length < 8){
+            alert('Password is not long enough')
+        }
         //Try/Catch to make sure account creation is successful
         try {
             setError('');
@@ -66,7 +82,6 @@ export default function SignUp(){
                         }
                 })
             }).then(() =>{
-
                 history.push('/concerns');
             });
         } catch {
@@ -79,7 +94,6 @@ export default function SignUp(){
     return(
         <div>
             <header>
-                <h1>Sign Up</h1>
                 <div className="button therapist-button">
                     <Link to='/login'>Login</Link>
                 </div>
@@ -103,9 +117,17 @@ export default function SignUp(){
                     <br/>
                     <input type="password" ref={confirmPasswordRef} placeholder="Password"/>
                     <br/>
-                    <label>Share Data?</label>
-                    <input type="checkbox" ref={checkedRef}/>
-                    <br/>
+                    <div className="share-data">
+                        <label>Share Data</label>
+                        <input type="checkbox" ref={checkedRef}/>
+                        <p data-for="main" data-tip>?</p>
+                    </div>
+                    <ReactTooltip
+                        id="main"
+                        place="right"
+                        effect={"solid"}
+                        multiline={true}
+                    >"By checking this box you are opting in to sharing your data with us and other on the platform. You will be displayed on the Veterans Helping Veterans Page"</ReactTooltip>
                     <button type="submit" disabled={loading}>Next</button>
                 </div>
             </form>

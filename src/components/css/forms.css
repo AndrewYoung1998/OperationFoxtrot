@@ -11,6 +11,7 @@
     width: 500px;
     font-family: 'Roboto',-apple-system, sans-serif;
     background: #fff;
+    margin-top: 10rem;
 }
 .form h1{
     font-family: 'Roboto', sans-serif;
@@ -36,21 +37,35 @@
     border-radius: 10px;
     margin: 2rem 0 0 0;
     border: none;
-    box-shadow: 0px 0px 4px 0px darkgrey;
+    box-shadow: 0 0 4px 0 darkgrey;
 }
 .form .form-body input[type="checkbox"]{
     box-shadow: none;
     width: 5%;
-    margin: 0rem 0 0 2rem;
-    display: inline-block;
+    margin: 0 1rem;
+    display: flex;
+    align-self: center;
 }
+.form .form-body .share-data{
+    display: flex;
+    flex-direction: row;
+    padding: 1rem 0;
+}
+.form .form-body .share-data p{
+    background: #DE8F19;
+    padding: 0.15rem .5rem;
+    border-radius: 50px;
+    color: white;
+    font-size: 16px;;
+}
+.form .form-body .share-data label{align-self: center;}
 .form .form-body button{
     background: #ffffff;
     color: #DE8F19;
     border-radius: 10px;
     height: 35px;
     border: none;
-    box-shadow: 0px 0px 4px 0px darkgrey;
+    box-shadow: 0 0 4px 0 darkgrey;
     margin: 2rem 0;
     font-size:18px;
     padding: 7px 20px;
@@ -65,4 +80,23 @@
 }
 .form .form-body button:focus{
     outline: none;
+}
+.form .form-body .forgot-password{
+    position: absolute;
+    top:70%;
+}
+.form .form-body .forgot-password a{
+    text-decoration: none;
+    color: #DE8F19;
+    transition: all .25s ease-in-out;
+}
+.form .form-body .forgot-password a:hover{color: #bfb7ad;}
+.form .form-body button.update {margin: 0;}
+.form .form-body .cancel a{
+    text-decoration: none;
+    color: #DE8F19;
+    transition: all .25s ease-in-out;
+}
+.form .form-body .cancel a:hover{
+    color: #bfb7ad;
 }
