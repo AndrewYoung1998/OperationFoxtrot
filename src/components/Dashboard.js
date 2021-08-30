@@ -2,6 +2,7 @@ import React, {useEffect, useState,} from 'react';
 import {Link} from "react-router-dom";
 import firebase from "../firebase";
 import './css/style.css'
+import placeholder from "./image/img.png"
 
 export default function Dashboard(){
 
@@ -37,7 +38,7 @@ export default function Dashboard(){
                                 </div>
                                 <div className={'therapist-information'}>
                                     <div className={'therapist-image'}>
-                                        <img src={allTherapist.image} alt={allTherapist.title}/>
+                                        { allTherapist.image === 'https://resources.psychologytoday.com/v6.270.0/images/profilePlaceholder.png' ? <img src={placeholder} alt={allTherapist.title}/> : <img src={allTherapist.image} alt={allTherapist.title}/>}
                                     </div>
                                     <div className={'therapist-excerpt'}>
                                         {allTherapist.excerpt}
