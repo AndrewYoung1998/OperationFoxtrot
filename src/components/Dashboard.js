@@ -38,7 +38,7 @@ export default function Dashboard(){
                                 </div>
                                 <div className={'therapist-information'}>
                                     <div className={'therapist-image'}>
-                                        { allTherapist.image === 'https://resources.psychologytoday.com/v6.270.0/images/profilePlaceholder.png' ? <img src={placeholder} alt={allTherapist.title}/> : <img src={allTherapist.image} alt={allTherapist.title}/>}
+                                        { allTherapist.image === 'https://resources.psychologytoday.com/v6.330.0/images/profilePlaceholder.png' ? <img src={placeholder} alt={allTherapist.title}/> : <img src={allTherapist.image} alt={allTherapist.title}/>}
                                     </div>
                                     <div className={'therapist-excerpt'}>
                                         {allTherapist.excerpt}
